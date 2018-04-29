@@ -16,6 +16,7 @@ import java.util.*
 class RealisticNametags : JavaPlugin() {
     private lateinit var protocolManager: ProtocolManager
     private val TEAM_HIDDEN_NAME = "name_hidden"
+    private val distance: Double = 5.0 // Distance in metres, or blocks if you will.
     private lateinit var team_hidden: Team
     private val shownPlayers = HashMap<Player, MutableList<Player>>()
 
@@ -32,7 +33,7 @@ class RealisticNametags : JavaPlugin() {
                 val toBeHidden = ArrayList<Player>()
                 server.onlinePlayers.forEach { target ->
                     if(observer != target &&
-                            observer.location.distance(target.location) <= server.viewDistance &&
+                            observer.location.distance(target.location) <= distance &&
                             observer.hasLineOfSight(target)) { // make sure it is shown
                         if(!shownPlayers[observer]!!.contains(target)) toBeShown.add(target)
                     } else { // make sure it is hidden
