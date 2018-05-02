@@ -1,3 +1,22 @@
+/*
+ *
+ * RealisticNametags
+ * Copyright (C) 2018 Martijn Heil
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
 package com.github.martijn_heil.realisticnametags
 
 import com.comphenix.packetwrapper.WrapperPlayServerScoreboardTeam
@@ -25,7 +44,7 @@ class RealisticNametags : JavaPlugin() {
         server.scoreboardManager.mainScoreboard.getTeam(TEAM_HIDDEN_NAME)?.unregister()
         team_hidden = server.scoreboardManager.mainScoreboard.registerNewTeam(TEAM_HIDDEN_NAME)
         team_hidden.setOption(Team.Option.NAME_TAG_VISIBILITY, Team.OptionStatus.FOR_OWN_TEAM)
-        server.onlinePlayers.forEach { team_hidden.addEntry(it.name); shownPlayers[it] = ArrayList() }
+        server.onlinePlayers.forEach { team_hidden.addEntry(it.name); this.shownPlayers[it] = ArrayList() }
 
         server.scheduler.scheduleSyncRepeatingTask(this, {
             server.onlinePlayers.forEach { observer ->
