@@ -35,7 +35,7 @@ import java.util.*
 class RealisticNametags : JavaPlugin() {
     private lateinit var protocolManager: ProtocolManager
     private val TEAM_HIDDEN_NAME = "name_hidden"
-    private val distance: Double = 5.0 // Distance in metres, or blocks if you will.
+    private val distance: Double = 10.0 // Distance in metres, or blocks if you will.
     private lateinit var team_hidden: Team
     private val shownPlayers = HashMap<Player, MutableList<Player>>()
 
