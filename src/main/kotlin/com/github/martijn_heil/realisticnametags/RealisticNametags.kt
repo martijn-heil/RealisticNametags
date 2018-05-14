@@ -51,7 +51,7 @@ class RealisticNametags : JavaPlugin() {
                 val toBeShown = ArrayList<Player>()
                 val toBeHidden = ArrayList<Player>()
                 server.onlinePlayers.forEach { target ->
-                    if(observer != target &&
+                    if(observer != target && observer.world == target.world &&
                             observer.location.distance(target.location) <= distance &&
                             observer.hasLineOfSight(target)) { // make sure it is shown
                         if(!shownPlayers[observer]!!.contains(target)) toBeShown.add(target)
