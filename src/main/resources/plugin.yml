@@ -2,4 +2,4 @@ name: RealisticNametags
 version: @version@
 author: Ninjoh
 main: com.github.martijn_heil.realisticnametags.RealisticNametags
-depend: [ProtocolLib]
+depend: [ProtocolLib, PacketWrapper]

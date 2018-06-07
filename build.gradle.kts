@@ -36,8 +36,6 @@ tasks {
     withType<ShadowJar> {
         this.classifier = null
         this.configurations = listOf(project.configurations.shadow)
-        relocate("com.comphenix.packetwrapper", "shadow.com.comphenix.packetwrapper")
-        exclude("com.comphenix.protocol")
     }
 }
 
@@ -62,8 +60,6 @@ idea {
 
 dependencies {
     compileOnly("org.bukkit:bukkit:1.12.2-R0.1-SNAPSHOT") { isChanging = true }
-    compileOnly("org.spigotmc:spigot:1.12.2-R0.1-SNAPSHOT") { isChanging = true }
     compileOnly(fileTree("lib") { include("*.jar") })
     shadow(kotlin("stdlib"))
-    shadow(fileTree("lib") { include("PacketWrapper.jar") })
 }

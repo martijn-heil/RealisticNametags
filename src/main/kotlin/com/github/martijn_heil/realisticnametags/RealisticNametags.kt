@@ -47,22 +47,26 @@ class RealisticNametags : JavaPlugin() {
         server.onlinePlayers.forEach { team_hidden.addEntry(it.name); this.shownPlayers[it] = ArrayList() }
 
         server.scheduler.scheduleSyncRepeatingTask(this, {
-            server.onlinePlayers.forEach { observer ->
-                val toBeShown = ArrayList<Player>()
-                val toBeHidden = ArrayList<Player>()
-                server.onlinePlayers.forEach { target ->
-                    if(observer != target && observer.world == target.world &&
-                            observer.location.distance(target.location) <= distance &&
-                            observer.hasLineOfSight(target)) { // make sure it is shown
-                        if(!shownPlayers[observer]!!.contains(target)) toBeShown.add(target)
-                    } else { // make sure it is hidden
-                        if(shownPlayers[observer]!!.contains(target)) toBeHidden.add(target)
+            try {
+                server.onlinePlayers.forEach { observer ->
+                    val toBeShown = ArrayList<Player>()
+                    val toBeHidden = ArrayList<Player>()
+                    server.onlinePlayers.forEach { target ->
+                        if(observer != target && observer.world == target.world &&
+                                observer.location.distance(target.location) <= distance &&
+                                observer.hasLineOfSight(target)) { // make sure it is shown
+                            if(!shownPlayers[observer]!!.contains(target)) toBeShown.add(target)
+                        } else { // make sure it is hidden
+                            if(shownPlayers[observer]!!.contains(target)) toBeHidden.add(target)
+                        }
                     }
+                    hideNamesFor(observer, toBeHidden)
+                    toBeHidden.forEach { shownPlayers[observer]!!.remove(it) }
+                    showNamesFor(observer, toBeShown)
+                    toBeShown.forEach { shownPlayers[observer]!!.add(it) }
                 }
-                hideNamesFor(observer, toBeHidden)
-                toBeHidden.forEach { shownPlayers[observer]!!.remove(it) }
-                showNamesFor(observer, toBeShown)
-                toBeShown.forEach { shownPlayers[observer]!!.add(it) }
+            } catch (e: Exception) {
+                e.printStackTrace()
             }
         }, 0, 1)
 
