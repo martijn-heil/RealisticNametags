@@ -8,7 +8,7 @@ import org.gradle.plugins.ide.idea.model.IdeaLanguageLevel
 
 plugins {
     `java-gradle-plugin`
-    kotlin("jvm") version "1.2.41"
+    kotlin("jvm") version "1.2.50"
     id("com.github.johnrengelman.shadow") version "2.0.3"
     idea
 }
